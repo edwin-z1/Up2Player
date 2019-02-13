@@ -42,8 +42,6 @@ private extension PlayItemStreamViewController {
     
     func setup() {
         
-        layout.delegate = self
-
         let refreshControl = UIRefreshControl()
         refreshControl.rx.controlEvent(.valueChanged)
             .subscribe(onNext: { [unowned self] (_) in
@@ -52,14 +50,16 @@ private extension PlayItemStreamViewController {
             })
             .disposed(by: bag)
         collectionView.refreshControl = refreshControl
-        
+
+        layout.delegate = self
+
         let dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<Int, PlayItem>>(configureCell: { (dataSource, collectionView, indexPath, playItem) -> UICollectionViewCell in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlayItemStreamCollectionCell.up2p.string, for: indexPath) as! PlayItemStreamCollectionCell
             cell.playItem = playItem
             return cell
         })
-        
         viewModel.animatableModelObservable
+            .skip(1)
             .do(onNext: { [weak self] (model) in
                 guard let `self` = self else { return }
                 self.collectionView.refreshControl?.endRefreshing()
@@ -67,6 +67,9 @@ private extension PlayItemStreamViewController {
             })
             .bind(to: collectionView.rx.items(dataSource: dataSource))
             .disposed(by: bag)
+        
+        refreshControl.beginRefreshing()
+        refreshControl.sendActions(for: .valueChanged)
         
         collectionView.rx.modelSelected(PlayItem.self)
             .subscribe(onNext: { [unowned self] (playItem) in
@@ -110,8 +113,6 @@ private extension PlayItemStreamViewController {
             })
             .disposed(by: bag)
         collectionView.addGestureRecognizer(longPress)
-        
-        viewModel.getPlayItems(at: path)
     }
 }
 

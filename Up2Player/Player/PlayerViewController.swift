@@ -33,17 +33,21 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var remainingTimeLabel: UILabel!
     @IBOutlet weak var progressSlider: AnimationSlider!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupPlayer()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setup()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupPlayer()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        player.stop()
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
