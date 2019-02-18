@@ -112,23 +112,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </visualEffectView>
-                            <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tff-uw-l4B">
-                                <rect key="frame" x="295" y="45" width="60" height="48"/>
-                                <view key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="KQL-Hl-IMm">
-                                    <rect key="frame" x="0.0" y="0.0" width="60" height="48"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="hcm-c2-PuI"/>
-                                    <constraint firstAttribute="width" constant="60" id="yd9-w3-9Gn"/>
-                                </constraints>
-                                <blurEffect style="light"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="12"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </visualEffectView>
                             <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k7k-Hd-bFp">
                                 <rect key="frame" x="20" y="584" width="335" height="48"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="VVp-t2-jqL">
@@ -189,12 +172,10 @@
                             <constraint firstItem="DnO-Fh-N5a" firstAttribute="centerX" secondItem="ZSn-Xz-A3Q" secondAttribute="centerX" id="b3b-k8-SFp"/>
                             <constraint firstItem="3fU-NW-3vh" firstAttribute="bottom" secondItem="k7k-Hd-bFp" secondAttribute="bottom" constant="5" id="eED-Ol-VKs"/>
                             <constraint firstAttribute="bottom" secondItem="60g-ec-Kf4" secondAttribute="bottom" id="i0J-0j-irf"/>
-                            <constraint firstItem="Tff-uw-l4B" firstAttribute="top" secondItem="3fU-NW-3vh" secondAttribute="top" constant="25" id="jgQ-Jo-RAU"/>
                             <constraint firstAttribute="trailing" secondItem="60g-ec-Kf4" secondAttribute="trailing" id="jwe-0i-4pI"/>
                             <constraint firstItem="DnO-Fh-N5a" firstAttribute="centerY" secondItem="ZSn-Xz-A3Q" secondAttribute="centerY" id="mSD-id-WXc"/>
                             <constraint firstItem="3fU-NW-3vh" firstAttribute="bottom" secondItem="k7k-Hd-bFp" secondAttribute="bottom" constant="35" id="nTO-ee-mUU"/>
                             <constraint firstItem="o0E-EQ-0pm" firstAttribute="leading" secondItem="3fU-NW-3vh" secondAttribute="leading" constant="20" id="pWr-fo-8he"/>
-                            <constraint firstItem="3fU-NW-3vh" firstAttribute="trailing" secondItem="Tff-uw-l4B" secondAttribute="trailing" constant="20" id="vme-z2-RU2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3fU-NW-3vh"/>
                         <variation key="default">
@@ -216,7 +197,6 @@
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="airplayView" destination="Tff-uw-l4B" id="HWx-xy-4Uf"/>
                         <outlet property="backButton" destination="Tyx-WI-LzI" id="jt8-Ky-yfm"/>
                         <outlet property="backView" destination="o0E-EQ-0pm" id="xbV-qE-0ga"/>
                         <outlet property="controlBar" destination="k7k-Hd-bFp" id="XPH-lw-lU2"/>

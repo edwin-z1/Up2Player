@@ -27,7 +27,6 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var gestureView: UIView!
     @IBOutlet weak var backView: UIVisualEffectView!
     @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var airplayView: UIVisualEffectView!
     @IBOutlet weak var controlBar: UIVisualEffectView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var remainingTimeLabel: UILabel!
@@ -75,7 +74,6 @@ private extension PlayerViewController {
         
         setupGestureView()
         setupBackButton()
-        setupAirplayView()
         setupProgressBar()
         setupRecordPosition()
         setupAppNoti()
@@ -194,22 +192,6 @@ private extension PlayerViewController {
             .disposed(by: bag)
     }
     
-    func setupAirplayView() {
-        
-        let pickerView = AVRoutePickerView()
-        pickerView.frame = airplayView.bounds
-        pickerView.tintColor = .white
-        airplayView.contentView.addSubview(pickerView)
-        
-        NotificationCenter.default.rx.notification(AVAudioSession.routeChangeNotification)
-            .subscribe(onNext: { (_) in
-                let route = AVAudioSession.sharedInstance().currentRoute
-                let screens = UIScreen.screens
-                print(route, screens)
-            })
-            .disposed(by: bag)
-    }
-    
     func setupProgressBar() {
         progressSlider.thumbImage = #imageLiteral(resourceName: "slider_square").withRenderingMode(.alwaysTemplate)
         progressSlider.maximunTrackTintColors = [#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.2), #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.2)]
@@ -259,7 +241,7 @@ private extension PlayerViewController {
 private extension PlayerViewController {
     
     func alphaControlViews(isShow: Bool) {
-        let controlViews = [backView, airplayView, controlBar]
+        let controlViews = [backView, controlBar]
         UIView.up2p.animate(content: {
             controlViews.forEach { $0?.alpha = isShow ? 1 : 0 }
         })
