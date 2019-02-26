@@ -121,13 +121,13 @@ private extension PlayerViewController {
                 switch pan.state {
                 case .began:
                     self.player.pause()
-                    self.alphaControlViews(isShow: true)
                 case .changed:
                     if self.isPanHorizontal == nil {
                         self.isPanHorizontal = abs(translation.x) > abs(translation.y)
                     }
                     
                     if self.isPanHorizontal! {
+                        self.alphaControlViews(isShow: true)
                         self.alphaSeekView(isShow: true)
                         
                         let location = pan.location(in: self.gestureView)
@@ -149,6 +149,7 @@ private extension PlayerViewController {
                         let currentTime = TimeInterval(self.progressSlider.value) * totalTime
                         self.seekTimeLabel.text = "\(currentTime.up2p.colonFormattedText())/\(totalTime.up2p.colonFormattedText())"
                     } else {
+                        self.alphaControlViews(isShow: false)
                         let fractionY = translation.y/self.gestureView.up2p.height
                         let scale = CGAffineTransform(scaleX: 1 - fractionY, y: 1 - fractionY)
                         let translation = scale.translatedBy(x: translation.x, y: translation.y)
