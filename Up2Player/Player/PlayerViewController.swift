@@ -50,11 +50,11 @@ class PlayerViewController: UIViewController {
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return playItem.isVertical ? .portrait : .landscapeLeft
+        return playItem.isVertical ? .portrait : .landscapeRight
     }
     
     override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        return playItem.isVertical ? .portrait : .landscapeLeft
+        return playItem.isVertical ? .portrait : .landscapeRight
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
