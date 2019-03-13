@@ -65,6 +65,7 @@ class PinterestLayout: UICollectionViewLayout {
     override func invalidateLayout() {
         super.invalidateLayout()
         cache.removeAll()
+        contentHeight = 0
     }
     
     override func prepare() {
