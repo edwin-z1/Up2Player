@@ -19,13 +19,8 @@ class PlayItem {
     var path: String!
     let coverSubject = BehaviorSubject<UIImage?>(value: nil)
     var isVertical = false
-    var position: Float?
+    let positionSubject = BehaviorSubject<Float>(value: 0)
 
-    lazy var mediaThumbnailer: VLCMediaThumbnailer = {
-        let mediaThumbnailer = VLCMediaThumbnailer(media: media, andDelegate: self)!
-        return mediaThumbnailer
-    }()
-    
     lazy var imgHeight: CGFloat = {
         if isDirectory {
             return 140
@@ -47,7 +42,12 @@ class PlayItem {
         let labelLeading: CGFloat = 6
         let width = (UIScreen.main.bounds.width - cellPadding * 3)/2 - labelLeading * 2
         let textHeight = name.up2p.size(UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.light), maxsize: CGSize(width: width, height: 40)).height
-        return 36 + imgHeight + floor(textHeight)
+        return 28 + imgHeight + floor(textHeight)
+    }()
+    
+    private lazy var mediaThumbnailer: VLCMediaThumbnailer = {
+        let mediaThumbnailer = VLCMediaThumbnailer(media: media, andDelegate: self)!
+        return mediaThumbnailer
     }()
     
     init(isDirectory: Bool, name: String, path: String) {
@@ -64,11 +64,6 @@ extension PlayItem {
         return VLCMedia(path: path)
     }
     
-    func setPosition(_ position: Float) {
-        self.position = position
-        UserDefaults.standard.up2p.setPlaybackPosition(position: position, name: name)
-    }
-    
     func getCover() {
         
         guard !isDirectory else {
@@ -78,6 +73,11 @@ extension PlayItem {
         
         if let img = FileManager.default.up2p.loadImg(name: name) {
             coverSubject.onNext(img)
+            return
+        }
+        
+        guard mediaThumbnailer.media.mediaType != .unknown else {
+            coverSubject.onNext(nil)
             return
         }
         
@@ -93,10 +93,16 @@ extension PlayItem {
     }
 }
 
-private extension PlayItem {
+extension PlayItem {
     
-    func getPosition() {
-        position = UserDefaults.standard.up2p.position(name: name)
+    func setPosition(_ position: Float) {
+        UserDefaults.standard.up2p.setPlaybackPosition(position: position, name: name)
+        positionSubject.onNext(position)
+    }
+    
+    private func getPosition() {
+        let position = UserDefaults.standard.up2p.position(name: name) ?? 0
+        positionSubject.onNext(position)
     }
 }
 

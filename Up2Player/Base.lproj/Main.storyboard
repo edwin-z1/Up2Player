@@ -261,6 +261,10 @@
                                                                 <constraint firstAttribute="height" constant="180" id="Mbm-vi-JfZ"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4iK-ww-jbG">
+                                                            <rect key="frame" x="0.0" y="180" width="161" height="2"/>
+                                                            <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </progressView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="花花" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WvS-pr-mLF">
                                                             <rect key="frame" x="6" y="192" width="149" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
@@ -275,6 +279,9 @@
                                                         <constraint firstItem="WvS-pr-mLF" firstAttribute="top" secondItem="ysp-RY-Bpt" secondAttribute="bottom" constant="12" id="IdU-t9-nSv"/>
                                                         <constraint firstItem="ysp-RY-Bpt" firstAttribute="top" secondItem="EFZ-84-FX7" secondAttribute="top" id="OPt-Jf-FRO"/>
                                                         <constraint firstAttribute="trailing" secondItem="ysp-RY-Bpt" secondAttribute="trailing" id="QNP-qd-Vyr"/>
+                                                        <constraint firstItem="4iK-ww-jbG" firstAttribute="leading" secondItem="EFZ-84-FX7" secondAttribute="leading" id="QnY-ce-vLf"/>
+                                                        <constraint firstItem="4iK-ww-jbG" firstAttribute="top" secondItem="ysp-RY-Bpt" secondAttribute="bottom" id="XhD-Vw-bGj"/>
+                                                        <constraint firstAttribute="trailing" secondItem="4iK-ww-jbG" secondAttribute="trailing" id="dfz-Od-87x"/>
                                                         <constraint firstAttribute="trailing" secondItem="WvS-pr-mLF" secondAttribute="trailing" constant="6" id="qDl-bT-Hln"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
@@ -296,6 +303,7 @@
                                             <outlet property="constraintImgViewHeight" destination="Mbm-vi-JfZ" id="B6g-yd-hLz"/>
                                             <outlet property="imgView" destination="ysp-RY-Bpt" id="DRH-24-8R8"/>
                                             <outlet property="label" destination="WvS-pr-mLF" id="xbK-m7-izY"/>
+                                            <outlet property="progressView" destination="4iK-ww-jbG" id="7Y3-0m-ZzX"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

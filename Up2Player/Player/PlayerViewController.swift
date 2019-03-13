@@ -265,7 +265,8 @@ extension PlayerViewController: VLCMediaPlayerDelegate {
         timeLabel.text = player.time.stringValue
         remainingTimeLabel.text = player.remainingTime.stringValue
 
-        if !hasSetPosition, let position = playItem.position {
+        if !hasSetPosition,
+            let position = try? playItem.positionSubject.value() {
             player.position = position
             hasSetPosition = true
         }
