@@ -17,6 +17,7 @@ class PlayerViewController: UIViewController {
     var playItem: PlayItem!
     
     private let player = VLCMediaPlayer()
+    private var isPlayingObservation: NSKeyValueObservation?
     private let bag = DisposeBag()
     private var hasSetPosition = false
     private var isPanHorizontal: Bool?
@@ -28,6 +29,9 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var backView: UIVisualEffectView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var controlBar: UIVisualEffectView!
+    @IBOutlet weak var backwardButton: UIButton!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var forwardButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var remainingTimeLabel: UILabel!
     @IBOutlet weak var progressSlider: AnimationSlider!
@@ -74,6 +78,7 @@ private extension PlayerViewController {
         
         setupGestureView()
         setupBackButton()
+        setupControlButtons()
         setupProgressBar()
         setupRecordPosition()
         setupAppNoti()
@@ -104,8 +109,10 @@ private extension PlayerViewController {
             .subscribe(onNext: { [unowned self] (tap) in
                 if self.player.isPlaying {
                     self.player.pause()
+                    self.alphaControlViews(isShow: true)
                 } else {
                     self.player.play()
+                    self.alphaControlViews(isShow: false)
                 }
             })
             .disposed(by: bag)
@@ -193,6 +200,52 @@ private extension PlayerViewController {
             .disposed(by: bag)
     }
     
+    func setupControlButtons() {
+        backwardButton.setImage(#imageLiteral(resourceName: "backward").withRenderingMode(.alwaysTemplate), for: .normal)
+        forwardButton.setImage(#imageLiteral(resourceName: "forward").withRenderingMode(.alwaysTemplate), for: .normal)
+        playButton.setImage(#imageLiteral(resourceName: "pause").withRenderingMode(.alwaysTemplate), for: .normal)
+        
+        isPlayingObservation = player.observe(\.isPlaying, options: .new) { [weak self] (player, change) in
+            guard let `self` = self else { return }
+            guard let new = change.newValue else {
+                return
+            }
+            if new {
+                self.playButton.setImage(#imageLiteral(resourceName: "pause").withRenderingMode(.alwaysTemplate), for: .normal)
+            } else {
+                self.playButton.setImage(#imageLiteral(resourceName: "play").withRenderingMode(.alwaysTemplate), for: .normal)
+            }
+        }
+        
+        playButton.rx.tap
+            .subscribe(onNext: { [unowned self] (_) in
+                if self.player.isPlaying {
+                    self.player.pause()
+                } else {
+                    self.player.play()
+                }
+            })
+            .disposed(by: bag)
+        
+        backwardButton.rx.tap
+            .subscribe(onNext: { [unowned self] (_) in
+                if !self.player.isPlaying {
+                    self.player.play()
+                }
+                self.player.jumpBackward(15)
+            })
+            .disposed(by: bag)
+        
+        forwardButton.rx.tap
+            .subscribe(onNext: { [unowned self] (_) in
+                if !self.player.isPlaying {
+                    self.player.play()
+                }
+                self.player.jumpForward(15)
+            })
+            .disposed(by: bag)
+    }
+    
     func setupProgressBar() {
         progressSlider.thumbImage = #imageLiteral(resourceName: "slider_square").withRenderingMode(.alwaysTemplate)
         progressSlider.maximunTrackTintColors = [#colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.2), #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.2)]
@@ -276,9 +329,13 @@ extension PlayerViewController: VLCMediaPlayerDelegate {
         guard let player = aNotification.object as? VLCMediaPlayer else {
             return
         }
-        if player.state == .stopped {
+        
+        switch player.state {
+        case .stopped:
             playItem.setPosition(0)
             setupPlayer()
+        default:
+            break
         }
     }
 }
