@@ -109,10 +109,8 @@ private extension PlayerViewController {
             .subscribe(onNext: { [unowned self] (tap) in
                 if self.player.isPlaying {
                     self.player.pause()
-                    self.alphaControlViews(isShow: true)
                 } else {
                     self.player.play()
-                    self.alphaControlViews(isShow: false)
                 }
             })
             .disposed(by: bag)
