@@ -1,4 +1,4 @@
-# up2player
+# Up2player
 
 
 A simple local player app. Require import videoes from iTunes.
