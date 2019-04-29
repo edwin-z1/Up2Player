@@ -45,6 +45,7 @@ struct PlayItemStreamViewModel {
             for playItem in playerItems {
                 _ = playItem.coverSubject
                     .skip(1)
+                    .observeOn(MainScheduler.asyncInstance)
                     .subscribe(onNext: { (_) in
                         semaphore.signal()
                     })
