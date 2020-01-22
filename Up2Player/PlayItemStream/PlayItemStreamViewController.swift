@@ -80,6 +80,7 @@ private extension PlayItemStreamViewController {
                     self.navigationController?.pushViewController(playItemVC, animated: true)
                 } else {
                     let playerVC = PlayerViewController.up2p.instantiateFromStoryboard()
+                    playerVC.modalPresentationStyle = .fullScreen
                     playerVC.playItem = playItem
                     self.present(playerVC, animated: true, completion: nil)
                 }

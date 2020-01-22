@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -265,7 +265,6 @@
 				84EB435A21F5AF8300A571CE /* Frameworks */,
 				84EB435B21F5AF8300A571CE /* Resources */,
 				2C113735F4771CC7F3057B89 /* [CP] Embed Pods Frameworks */,
-				7A10DBA77963953407A78509 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -347,40 +346,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Up2Player/Pods-Up2Player-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Up2Player/Pods-Up2Player-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Up2Player/Pods-Up2Player-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Up2Player/Pods-Up2Player-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7A10DBA77963953407A78509 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Up2Player/Pods-Up2Player-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Up2Player/Pods-Up2Player-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -565,7 +540,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K894H4XBD8;
+				DEVELOPMENT_TEAM = B6UF7V373S;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Up2Player/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -589,7 +564,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K894H4XBD8;
+				DEVELOPMENT_TEAM = B6UF7V373S;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Up2Player/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
